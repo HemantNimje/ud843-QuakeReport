@@ -1,6 +1,7 @@
 package com.example.android.quakereport;
 
 import android.content.Context;
+import android.renderscript.Sampler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -51,7 +52,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         TextView earthquakeMagnitude = (TextView) listItemView.findViewById(R.id.earthquake_magnitude);
 
         // Set the magnitude TextView with current earthquake magnitude
-        earthquakeMagnitude.setText(currentEarthquake.getMagnitude());
+        earthquakeMagnitude.setText(String.valueOf(currentEarthquake.getMagnitude()));
 
         // Find the TextView for the location from layout
         TextView earthquakeLocation = (TextView) listItemView.findViewById(R.id.earthquake_location);
@@ -63,7 +64,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         TextView earthquakeDate = (TextView) listItemView.findViewById(R.id.earthquake_date);
 
         // Set the date TextView with current earthquake date
-        earthquakeDate.setText(currentEarthquake.getDate());
+        earthquakeDate.setText(String.valueOf(currentEarthquake.getDate()));
 
         // Return listItem layout
         return listItemView;
