@@ -10,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
@@ -60,13 +63,44 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         // Set the location TextView with current earthquake location
         earthquakeLocation.setText(currentEarthquake.getLocation());
 
+        // Create a new Date object from the time in milliseconds of the earthquake
+        Date dateObject = new Date(currentEarthquake.getTimeInMilliSeconds());
+
         // Find the TextView for the date from layout
         TextView earthquakeDate = (TextView) listItemView.findViewById(R.id.earthquake_date);
 
+        // Format the date string (i.e. "Mar 3, 1984")
+        String formattedDate = formatDate(dateObject);
+
         // Set the date TextView with current earthquake date
-        earthquakeDate.setText(String.valueOf(currentEarthquake.getDate()));
+        earthquakeDate.setText(formattedDate);
+
+        // Find the TextView for the time from layout
+        TextView earthquakeTime = (TextView) listItemView.findViewById(R.id.earthquake_time);
+
+        // Format the time string(i.e. "12:00 AM")
+        String formattedTime = formatTime(dateObject);
+
+        // Set the time TextView with current earthquake time
+        earthquakeTime.setText(formattedTime);
 
         // Return listItem layout
         return listItemView;
+    }
+
+    /**
+     * Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.
+     */
+    private String formatDate(Date dateObject) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy", Locale.getDefault());
+        return dateFormat.format(dateObject);
+    }
+
+    /**
+     * Return the formatted date string (i.e. "4:30 PM") from a Date object.
+     */
+    private String formatTime(Date dateObject) {
+        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a", Locale.getDefault());
+        return timeFormat.format(dateObject);
     }
 }

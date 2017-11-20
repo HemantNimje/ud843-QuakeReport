@@ -9,20 +9,20 @@ public class Earthquake {
     private String mLocation;
 
     // Date of the earthquake
-    private long mDate;
+    private long mTimeInMilliSeconds;
 
     /**
      * Create new object of Earthquake
      *
-     * @param magnitude is magnitude of the earthquake
-     * @param location  is location of the earthquake
-     * @param date      is date of the earthquake
+     * @param magnitude          is magnitude of the earthquake
+     * @param location           is location of the earthquake
+     * @param timeInMilliSeconds is date of the earthquake
      */
 
-    public Earthquake(double magnitude, String location, long date) {
+    public Earthquake(double magnitude, String location, long timeInMilliSeconds) {
         mMagnitude = magnitude;
         mLocation = location;
-        mDate = date;
+        mTimeInMilliSeconds = timeInMilliSeconds;
     }
 
     // Get the magnitude of the earthquake
@@ -36,8 +36,8 @@ public class Earthquake {
     }
 
     // Get the date of the earthquake
-    public long getDate() {
-        return mDate;
+    public long getTimeInMilliSeconds() {
+        return mTimeInMilliSeconds;
     }
 
     // Set the magnitude of the earthquake
@@ -51,8 +51,8 @@ public class Earthquake {
     }
 
     // Set the date of the earthquake
-    public void setDate(long date) {
-        mDate = date;
+    public void setTimeInMilliSeconds(long timeInMilliSeconds) {
+        mTimeInMilliSeconds = timeInMilliSeconds;
     }
 
 }

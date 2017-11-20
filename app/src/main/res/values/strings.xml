@@ -17,4 +17,5 @@
     <string name="text_holder_magnitude">2</string>
     <string name="text_holder_location">Long Beach</string>
     <string name="text_holder_date">Jan 1,2017</string>
+    <string name="text_holder_time">12:00 AM</string>
 </resources>

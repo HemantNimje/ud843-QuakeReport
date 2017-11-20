@@ -9,21 +9,29 @@
     <TextView
         android:id="@+id/earthquake_magnitude"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         tools:text="@string/text_holder_magnitude" />
 
     <TextView
         android:id="@+id/earthquake_location"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         tools:text="@string/text_holder_location" />
 
     <TextView
         android:id="@+id/earthquake_date"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         tools:text="@string/text_holder_date" />
+
+    <TextView
+        android:id="@+id/earthquake_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="@string/text_holder_time" />
+
 </LinearLayout>
