@@ -1,7 +1,6 @@
 package com.example.android.quakereport;
 
 import android.content.Context;
-import android.renderscript.Sampler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -17,6 +16,8 @@ import java.util.Locale;
 
 
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
+
+    private static final String LOCATION_SEPARATOR = " of ";
 
     /**
      * Create a custom constructor
@@ -57,11 +58,28 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         // Set the magnitude TextView with current earthquake magnitude
         earthquakeMagnitude.setText(String.valueOf(currentEarthquake.getMagnitude()));
 
-        // Find the TextView for the location from layout
-        TextView earthquakeLocation = (TextView) listItemView.findViewById(R.id.earthquake_location);
+        // Find TextView reference to the location offset in the layout
+        TextView earthquakeLocationOffset = (TextView) listItemView.findViewById(R.id.earthquake_location_offset);
 
-        // Set the location TextView with current earthquake location
-        earthquakeLocation.setText(currentEarthquake.getLocation());
+        // Find the TextView for the location from layout
+        TextView earthquakeLocationPrimary = (TextView) listItemView.findViewById(R.id.earthquake_location_primary);
+
+        String originalLocation = currentEarthquake.getLocation();
+        String locationOffset, primaryLocation;
+        if (originalLocation.contains(LOCATION_SEPARATOR)) {
+            String[] locationParts = originalLocation.split(LOCATION_SEPARATOR);
+            locationOffset = locationParts[0] + LOCATION_SEPARATOR;
+            primaryLocation = locationParts[1];
+        } else {
+            locationOffset = getContext().getString(R.string.near_the);
+            primaryLocation = originalLocation;
+        }
+
+        // Set the locationOffset TextView with the current location offset
+        earthquakeLocationOffset.setText(locationOffset);
+
+        // Set the locationPrimary TextView with current earthquake primary location
+        earthquakeLocationPrimary.setText(primaryLocation);
 
         // Create a new Date object from the time in milliseconds of the earthquake
         Date dateObject = new Date(currentEarthquake.getTimeInMilliSeconds());

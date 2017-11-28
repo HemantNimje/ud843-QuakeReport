@@ -14,7 +14,14 @@
         tools:text="@string/text_holder_magnitude" />
 
     <TextView
-        android:id="@+id/earthquake_location"
+        android:id="@+id/earthquake_location_offset"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="@string/text_holder_location_offset" />
+
+    <TextView
+        android:id="@+id/earthquake_location_primary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
