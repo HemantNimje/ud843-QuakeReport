@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,7 +57,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         TextView earthquakeMagnitude = (TextView) listItemView.findViewById(R.id.earthquake_magnitude);
 
         // Set the magnitude TextView with current earthquake magnitude
-        earthquakeMagnitude.setText(String.valueOf(currentEarthquake.getMagnitude()));
+        earthquakeMagnitude.setText(formatMagnitude(currentEarthquake.getMagnitude()));
 
         // Find TextView reference to the location offset in the layout
         TextView earthquakeLocationOffset = (TextView) listItemView.findViewById(R.id.earthquake_location_offset);
@@ -105,6 +106,15 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         // Return listItem layout
         return listItemView;
     }
+
+    /**
+     * Return the formatted magnitude string (i.e. "0.00") from decimal magnitude
+     */
+    private String formatMagnitude(double magnitude) {
+        DecimalFormat magnitudeFormat = new DecimalFormat("0.0");
+        return magnitudeFormat.format(magnitude);
+    }
+
 
     /**
      * Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.
