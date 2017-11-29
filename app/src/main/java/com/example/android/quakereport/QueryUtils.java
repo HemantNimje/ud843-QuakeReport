@@ -6,6 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URI;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -75,8 +77,12 @@ public final class QueryUtils {
                 // Extract “time” for time
                 long time = properties.getLong("time");
 
-                // Create Earthquake java object from magnitude, location, and time
-                Earthquake earthquake = new Earthquake(magnitude, location, time);
+                // Extract "url" from url
+                String url = properties.getString("url");
+
+                // Create Earthquake java object from magnitude, location, time and url from JSON
+                // response
+                Earthquake earthquake = new Earthquake(magnitude, location, time, url);
 
                 // Add earthquake to list of earthquakes
                 earthquakes.add(earthquake);
