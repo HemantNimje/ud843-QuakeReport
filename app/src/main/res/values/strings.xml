@@ -22,4 +22,5 @@
 
     <!-- Default text to show the location offset if one is not available from JSON response -->
     <string name="near_the">Near the</string>
+    <string name="no_earthquakes">No earthquakes found.</string>
 </resources>
