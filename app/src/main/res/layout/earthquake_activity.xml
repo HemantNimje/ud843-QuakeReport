@@ -32,4 +32,13 @@
         android:layout_centerInParent="true"
         android:textAppearance="?android:textAppearanceMedium" />
 
+    <!-- Progress bar to show the indeterminate time for loading the earthquake data -->
+
+    <ProgressBar
+        android:id="@+id/loading_spinner"
+        style="@style/Base.Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
 </RelativeLayout>

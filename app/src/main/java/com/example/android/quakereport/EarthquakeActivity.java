@@ -25,6 +25,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -45,6 +46,9 @@ public class EarthquakeActivity extends AppCompatActivity
     /** TextView that is displayed when the list is empty */
     private TextView mEmptyStateTextView;
 
+    /* Progress bar that is displayed while data is fetched from network */
+    private ProgressBar mProgressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +59,9 @@ public class EarthquakeActivity extends AppCompatActivity
 
         mEmptyStateTextView = findViewById(R.id.empty_view);
         earthquakeListView.setEmptyView(mEmptyStateTextView);
+
+        // Show the progress bar
+        mProgressBar = findViewById(R.id.loading_spinner);
 
         // Create a new adapter that takes empty list of earthquake as input
         mAdapter = new EarthquakeAdapter(this, new ArrayList<Earthquake>());
@@ -94,6 +101,10 @@ public class EarthquakeActivity extends AppCompatActivity
 
     @Override
     public void onLoadFinished(Loader<List<Earthquake>> loader, List<Earthquake> data) {
+
+        /* Hide the loading indicator */
+        mProgressBar.setVisibility(View.GONE);
+
         // Set empty state text to display "No earthquakes found."
         mEmptyStateTextView.setText(R.string.no_earthquakes);
 
