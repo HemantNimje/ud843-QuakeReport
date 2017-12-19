@@ -16,14 +16,16 @@
 package com.example.android.quakereport;
 
 import android.app.LoaderManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -43,7 +45,9 @@ public class EarthquakeActivity extends AppCompatActivity
 
     private EarthquakeAdapter mAdapter;
 
-    /** TextView that is displayed when the list is empty */
+    /**
+     * TextView that is displayed when the list is empty
+     */
     private TextView mEmptyStateTextView;
 
     /* Progress bar that is displayed while data is fetched from network */
@@ -88,9 +92,17 @@ public class EarthquakeActivity extends AppCompatActivity
             }
         });
 
-        // Interact with the loaders using loader manager
-        getLoaderManager().initLoader(EARTHQUAKE_LOADER_ID,null,this);
+        // Check if the device is connected to the internet
+        if (isConnectedToNetwork()) {
+            // Interact with the loaders using loader manager
+            getLoaderManager().initLoader(EARTHQUAKE_LOADER_ID, null, this);
+        }else{
+            /* Hide the progress bar */
+            mProgressBar.setVisibility(View.GONE);
 
+            /* Notify no internet connection */
+            mEmptyStateTextView.setText(R.string.no_internet_connection);
+        }
     }
 
     @Override
@@ -123,5 +135,15 @@ public class EarthquakeActivity extends AppCompatActivity
 
         // Loader is reset, so clear the adapter to clear existing data.
         mAdapter.clear();
+    }
+
+    public boolean isConnectedToNetwork() {
+        ConnectivityManager cm = (ConnectivityManager)
+                getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+
+        return isConnected;
     }
 }
